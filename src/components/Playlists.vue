@@ -3,9 +3,20 @@
 		<v-app id="inspire">
       <v-app-bar class="d-flex justify-center" color="white" flat>
         <v-btn @click="goHome" color="white" depressed>Home</v-btn>
-        <v-btn @click="goPlaylists" color="white" depressed>Untagged </v-btn>
+        <v-btn @click="goPlaylists" color="white" depressed>Playlists</v-btn>
       </v-app-bar>
 			<v-container>
+        <v-row class="d-flex flex-row-reverse">
+          <v-col lg="3" md="3">
+            <v-pagination
+              v-model="page"
+              :length="pageCount"
+              @input="changePage()"
+              @next="changePage()"
+              @prev="changePage()"
+            ></v-pagination>
+          </v-col>
+        </v-row>
 				<v-card
 					class="d-flex justify-space-between flex-wrap"
 					color="lighten-2"
@@ -17,7 +28,6 @@
 						:key="p.id"
 						class="ma-3"
 						width="200"
-						tile
 					>
 						<v-img
 							:src="p.images[0] ? p.images[0].url : undefined"
@@ -25,7 +35,7 @@
 							width="200"
 						></v-img>
 
-						<v-card-title class="text-subtitle-2">
+            <v-card-title class="d-inline-block text-subtitle-1 text-truncate pa-2 pr-0 playlist-card-title">
 							{{ p.name }}
 						</v-card-title>
             <TagMenu :playlist="p"></TagMenu>
@@ -44,20 +54,15 @@ const axios = require('axios');
 
 export default {
   data () {
-    axios
-      .get('http://localhost:3000/api/v1/playlists', {withCredentials: true})
-        .then(response => (this.playlists = response.data.items))
+    this.getPlaylists()
     return {
-      playlists: this.playlists,
-      fav: true,
-      menu: false,
-      message: false,
-      hints: true,
+      playlists: [],
+      page: 1,
+      pageCount: 1,
     }
   },
-  // computed () {
-  //   // page count and shit
-  // },
+  computed: {
+  },
   methods : {
     goHome: function() {
       this.$root.currentRoute = '/'
@@ -74,6 +79,16 @@ export default {
 				'/playlists',
 				'/playlists'
       )
+    },
+    changePage: function() {this.getPlaylists(this.page)},
+    getPlaylists: function(page) {
+      var pageParam = page ? '?page=' + page : ''
+      axios
+        .get('http://localhost:3000/api/v1/playlists' + pageParam, {withCredentials: true})
+          .then(response => (
+            this.playlists = response.data.items,
+            this.pageCount = Math.ceil(response.data.total / 50)
+        ));
     }
   },
   components: {
@@ -101,6 +116,11 @@ export default {
 		/* max-width: 160px; */
 		margin-right: 60px;
     /* background: orange; */
+  }
+  .playlist-card-title {
+      width: 200px;
+      font-size: 0.9rem !important;
+      font-weight: 500 !important;
   }
   h3 {
     font-weight: 500;
