@@ -7,7 +7,7 @@
           <v-col>
             <h2 class="text-center pb-8 empty-state-title" v-if="!sections">Fetching your tags...</h2>
             <h2 class="text-center pb-8 empty-state-title" v-if="sections && Object.keys(sections).length == 0">It's a bit empty here :( <br> Try tagging some playlists.</h2>
-            <v-img src="/img/undraw_compose_music_ovo2.svg" max-width="600" class="empty-state-img"></v-img>
+            <v-img src="@/assets/undraw_compose_music_ovo2.svg" max-width="600" class="empty-state-img"></v-img>
           </v-col>
         </v-row>
         <v-row
