@@ -10,6 +10,8 @@
         <v-btn
           v-bind="attrs"
           v-on="on"
+          :color="playlist.tags && playlist.tags.length ? 'blue' : 'gray'"
+          @click="cleanupTags"
           class="ma-2 pa-4"
           x-small
           icon
@@ -78,26 +80,58 @@
     }),
     props: ['playlist'],
     methods: {
-      addTag: function(tag) {
-        this.playlist.tags.push(tag)
-        // this[tag.parent].splice(index, 1)
+      cleanupTags: function() {
+        var playlist = this.playlist
+        if (this.playlist.tags) {
+          this.moods = this.moods.filter(function(mood) {
+            return playlist.tags.indexOf(mood) == -1
+          })
+          this.times = this.times.filter(function(time) {
+            return playlist.tags.indexOf(time) == -1
+          })
+        }
+      },
+      addTag: function(tag, index) {
+        if (this.playlist.tags) {
+          this.playlist.tags.push(tag)
+        } else {
+          this.playlist.tags = [tag]
+        }
+        this[this.findTagHome(tag)].splice(index, 1)
       },
       removeTag: function(tag, index) {
         this.playlist.tags.splice(index, 1)
-        // this[tag.parent].push(tag)
+        this[this.findTagHome(tag)].push(tag)
       },
       tagPlaylist: function(ext_id) {
-        var tags = this.playlist.tags.map(t => t.tag)
-				axios({
-					method: 'post',
-					url: 'http://localhost:3000/api/v1/taggables',
-					data: {
-						ext_id: ext_id,
-						tags: tags,
-					},
-					withCredentials: true
-				});
+        var url, method, data;
+        var tags = this.playlist.tags
+
+        if (this.playlist.taggable_id) {
+          method = 'patch'
+          url = 'http://localhost:3000/api/v1/taggables' + '/' + this.playlist.taggable_id;
+          data = {tags: tags};
+        } else {
+          method = 'post'
+          url = 'http://localhost:3000/api/v1/taggables';
+          data = {ext_id: ext_id, tags: tags};
+        }
+        axios({
+          method: method,
+          url: url,
+          data: data,
+          withCredentials: true
+        });
         this.menu = false;
+      },
+      findTagHome: function(tag) {
+        // I need this to be super basic for now
+
+        if (['morning', 'afternoon', 'night'].indexOf(tag) == -1) {
+          return "moods"
+        } else {
+          return "times"
+        }
       }
     }
   }
