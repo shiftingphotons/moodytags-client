@@ -1,14 +1,18 @@
 <template>
 	<div id="app">
 		<v-app id="inspire">
-      <v-app-bar class="d-flex justify-center" color="white" flat>
-        <v-btn @click="goHome" color="white" depressed>Home</v-btn>
-        <v-btn @click="goPlaylists" color="white" depressed>Playlists</v-btn>
-      </v-app-bar>
+      <NavBar></NavBar>
+      <v-row v-if="!playlists.length" align="start" justify="center">
+        <v-col>
+          <h2 class="text-center pb-8 empty-state-title">Getting the playlists! <br> Enjoy nature in the meantime.</h2>
+          <v-img src="/img/undraw_nature_m5ll.svg" max-width="500" class="empty-state-img"></v-img>
+        </v-col>
+      </v-row>
 			<v-container>
         <v-row class="d-flex flex-row-reverse">
           <v-col lg="3" md="3">
             <v-pagination
+              v-if="playlists.length"
               v-model="page"
               :length="pageCount"
               @input="changePage()"
@@ -42,15 +46,17 @@
 					</v-card>
 				</v-card>
 			</v-container>
+      <Footer></Footer>
 		</v-app>
 	</div>
 </template>
 
 <script>
-import TagMenu from './TagMenu.vue'
-// TODO Name it untagged?
-
 const axios = require('axios');
+
+import TagMenu from './TagMenu.vue'
+import NavBar from './NavBar.vue'
+import Footer from './Footer.vue'
 
 export default {
   data () {
@@ -64,22 +70,6 @@ export default {
   computed: {
   },
   methods : {
-    goHome: function() {
-      this.$root.currentRoute = '/'
-			window.history.pushState(
-				null,
-				'/',
-				'/'
-      )
-    },
-    goPlaylists: function() {
-      this.$root.currentRoute = '/playlists'
-			window.history.pushState(
-				null,
-				'/playlists',
-				'/playlists'
-      )
-    },
     changePage: function() {this.getPlaylists(this.page)},
     getPlaylists: function(page) {
       var pageParam = page ? '?page=' + page : ''
@@ -92,7 +82,9 @@ export default {
     }
   },
   components: {
-    TagMenu
+    TagMenu,
+    NavBar,
+    Footer
   }
 }
 
@@ -107,22 +99,18 @@ export default {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		color: #343534;
-	}
-	.tag-section {
-		margin-bottom: 80px;
-	}
-  .playlist {
-    height: 200px;
-		/* max-width: 160px; */
-		margin-right: 60px;
-    /* background: orange; */
-  }
-  .playlist-card-title {
-      width: 200px;
-      font-size: 0.9rem !important;
-      font-weight: 500 !important;
-  }
-  h3 {
+}
+.playlist-card-title {
+    width: 200px;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+}
+.empty-state-img {
+    margin: 50px auto;
+}
+.empty-state-title {
+    color: #00AA95;
+    letter-spacing: 0.4px;
     font-weight: 500;
-  }
+}
 </style>

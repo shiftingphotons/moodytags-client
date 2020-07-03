@@ -1,41 +1,46 @@
 <template>
   <div id="app">
-      <v-app id="inspire">
-				<v-app-bar class="d-flex justify-center" color="white" flat>
-					<v-btn @click="goHome" color="white" depressed>Home</v-btn>
-					<v-btn @click="goPlaylists" color="white" depressed>Playlists </v-btn>
-				</v-app-bar>
-				<v-container>
-					<v-row
-						v-for="(playlists, tag) in sections" :key="tag"
-					>
-						<v-toolbar flat color="white">
-							<v-toolbar-title class="section-title">{{ tag }}</v-toolbar-title>
-						</v-toolbar>
+    <v-app id="inspire">
+      <NavBar></NavBar>
+      <v-container>
+        <v-row v-if="!sections || Object.keys(sections).length == 0" align="start" justify="center">
+          <v-col>
+            <h2 class="text-center pb-8 empty-state-title" v-if="!sections">Fetching your tags...</h2>
+            <h2 class="text-center pb-8 empty-state-title" v-if="sections && Object.keys(sections).length == 0">It's a bit empty here :( <br> Try tagging some playlists.</h2>
+            <v-img src="/img/undraw_compose_music_ovo2.svg" max-width="600" class="empty-state-img"></v-img>
+          </v-col>
+        </v-row>
+        <v-row
+          v-for="(playlists, tag) in sections" :key="tag"
+        >
+          <v-toolbar flat color="white">
+            <v-toolbar-title class="section-title">{{ tag }}</v-toolbar-title>
+          </v-toolbar>
 
-						<v-col class="d-flex flex-row" cols="12">
-							<v-card
-								class="mr-8"
-								v-for="p in playlists" :key="p.id"
-								width="200"
-                flat
-							>
+          <v-col class="d-flex flex-row" cols="12">
+            <v-card
+              class="mr-8"
+              v-for="p in playlists" :key="p.id"
+              width="200"
+              flat
+            >
               <a :href="p.uri">
-								<v-img
-									:src="p.images[0] ? p.images[0].url : undefined"
-									height="200"
-									width="200"
-								></v-img>
+                <v-img
+                  :src="p.images[0] ? p.images[0].url : undefined"
+                  height="200"
+                  width="200"
+                ></v-img>
               </a>
 
-								<v-card-title class="d-inline-block text-subtitle-1 text-truncate pa-2 pr-0 playlist-card-title">
-									{{ p.name }}
-								</v-card-title>
-							</v-card>
-						</v-col>
-            <v-divider></v-divider>
-					</v-row>
-				</v-container>
+              <v-card-title class="d-inline-block text-subtitle-1 text-truncate pa-2 pr-0 playlist-card-title">
+                {{ p.name }}
+              </v-card-title>
+            </v-card>
+          </v-col>
+          <v-divider></v-divider>
+        </v-row>
+      </v-container>
+      <Footer></Footer>
     </v-app>
   </div>
 </template>
@@ -43,13 +48,10 @@
 
 <script>
 
+import NavBar from './NavBar.vue'
+import Footer from './Footer.vue'
 
 const axios = require('axios');
-// module.exports = {
-//   data: {
-//     hey: "what?"
-//   }
-// }
 
 export default {
   data () {
@@ -60,23 +62,9 @@ export default {
       sections: this.sections
     }
   },
-  methods : {
-    goHome: function() {
-      this.$root.currentRoute = '/'
-			window.history.pushState(
-				null,
-				'/',
-				'/'
-      )
-    },
-    goPlaylists: function() {
-      this.$root.currentRoute = '/playlists'
-			window.history.pushState(
-				null,
-				'/playlists',
-				'/playlists'
-      )
-    }
+  components: {
+    NavBar,
+    Footer
   }
 }
 
@@ -98,15 +86,17 @@ export default {
     font-weight: 700;
     letter-spacing: 1px;
 }
-.playlist {
-    height: 200px;
-    /* max-width: 160px; */
-    margin-right: 60px;
-    /* background: orange; */
-}
 .playlist-card-title {
     width: 200px;
     font-size: 0.9rem !important;
     font-weight: 500 !important;
+}
+.empty-state-img {
+    margin: 50px auto;
+}
+.empty-state-title {
+    color: #00AA95;
+    letter-spacing: 0.4px;
+    font-weight: 500;
 }
 </style>
