@@ -1,10 +1,7 @@
 import Vue from 'vue'
-// import App from './App.vue'
-
 import Home from './components/Home.vue'
 import Playlists from './components/Playlists.vue'
 import vuetify from './plugins/vuetify';
-
 
 Vue.config.productionTip = false
 
