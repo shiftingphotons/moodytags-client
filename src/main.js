@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Home from './components/Home.vue'
+import Tags from './components/Tags.vue'
 import Playlists from './components/Playlists.vue'
 import vuetify from './plugins/vuetify';
 
@@ -7,6 +8,7 @@ Vue.config.productionTip = false
 
 const routes = {
   '/': Home,
+  '/tags': Tags,
   '/playlists': Playlists
 }
 
