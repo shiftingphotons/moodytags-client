@@ -3,14 +3,45 @@
     <v-app id="inspire">
       <NavBar></NavBar>
 			<v-container>
+        <div>
+          <h1 class="headline text-center">Tag collections</h1>
+          <p class="text-subtitle-1 text-center mb-8">
+            Your things go here
+          </p>
+        </div>
+        <div class="d-flex justify-space-between">
+          <v-col cols="4"></v-col>
+          <v-col cols="4" class="text-center">
+            <v-btn icon
+                class="mb-4"
+                color="#385F73"
+                @click="addTag">
+              <v-icon x-large>fa-plus-circle</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col cols="4" class="text-right">
+            <v-btn icon
+                color="#385F73"
+                class="mr-1"
+                large
+                @click="gridView = true">
+              <v-icon>fa-th</v-icon>
+            </v-btn>
+            <v-btn icon
+                color="#385F73"
+                large
+                @click="gridView = false">
+              <v-icon>fa-bars</v-icon>
+            </v-btn>
+          </v-col>
+        </div>
 				<v-row>
           <v-col
             v-for="tag in tags"
             :key="tag.id"
-            class="d-flex justify-center"
-            cols="12"
-          >
-            <TagCard :tag="tag"></TagCard>
+            :class="gridView ? 'd-flex justify-space-between' : 'd-flex justify-center'"
+            :cols="gridView ? 4 : 12">
+            <TagCard v-on:save="save" :tag="tag"></TagCard>
           </v-col>
 				</v-row>
 			</v-container>
@@ -35,6 +66,22 @@ export default {
         .then(response => (this.tags = response.data))
     return {
       tags: this.tags,
+      gridView: true
+    }
+  },
+  methods: {
+    changeLayout: function() {
+      return
+    },
+    addTag: function() {
+      var tagName = window.prompt("Name of your new tag collection?")
+      if (tagName && tagName.length > 0) {
+        this.tags.push({name: tagName, tags: [], order: this.tags.length})
+      }
+    },
+    save: function() {
+      axios
+        .put('http://localhost:3000/api/v1/user/tags', {tags: this.tags}, {withCredentials: true})
     }
   },
   components: {

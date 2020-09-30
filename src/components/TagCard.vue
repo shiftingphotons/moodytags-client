@@ -1,17 +1,18 @@
 <template>
   <v-card
-    class="ma-3"
+    class="ma-3 d-flex flex-column"
     color="#385F73"
     cols="6"
-    max-height="300"
+    max-height="380"
     width="480"
     dark
   >
-    <v-card-title class="headline">
-      {{ tag.name }}
-    </v-card-title>
 
-    <v-card-text>
+    <v-text-field class="headline tag-name mb-0" flat single-line v-model="tag.name" :readonly="!editable">
+      {{ tag.name }}
+    </v-text-field>
+
+    <v-card-text class="d-flex justify-start flex-wrap">
       <v-btn icon
           height="40px"
           width="40px"
@@ -24,6 +25,7 @@
         :key="index"
         class="ma-2"
         @click:close="removeTag(index)"
+        small
         color="white"
         :close="editable ? true : false"
         outlined
@@ -31,28 +33,31 @@
         {{ name }}
       </v-chip>
     </v-card-text>
-
-    <v-card-actions v-bind:class="{ 'd-flex justify-center': editable }">
+    <v-spacer></v-spacer>
+    <v-card-actions v-bind:class="{ 'd-flex justify-space-between': editable }">
       <v-btn icon
           v-if="!editable"
           @click="edit"
+          bottom
           class="ml-1 mt-3">
         <v-icon>far fa-edit</v-icon>
       </v-btn>
-      <v-btn class="mb-1 mt-5 mr-12"
+      <v-btn class="mb-3 mt-5 ml-4"
           v-if="editable"
-          @click="save"
+          v-on:click="save"
           outlined
+          left
           bottom
           color="green"
           small>
         <v-icon class="ma-2" small>fa-check</v-icon>
         Save
       </v-btn>
-      <v-btn class="mb-1 mt-5 ml-12"
+      <v-btn class="mb-3 mt-5 mr-4"
           v-if="editable"
           @click="cancel"
           outlined
+          right
           bottom
           color="red"
           small>
@@ -73,9 +78,15 @@
     }),
     props: ['tag'],
     methods: {
+      handleInput: function(e) {
+        this.editedTagName = e.target.innerText
+      },
       edit: function() {
         this.editable = true
-        this.prev = this.tag
+        this.prev = {
+          tags: [...this.tag.tags],
+          name: this.tag.name
+        }
         console.log(this.prev)
       },
       addChip: function() {
@@ -92,12 +103,14 @@
         this.tag.tags.splice(index, 1)
       },
       save: function() {
-        console.log(this.tag)
+        // this.tag.name = this.editedTagName
+        this.editable = false
+        this.$emit('save')
       },
       cancel: function() {
-        console.log(this.prev)
         this.editable = false
-        this.tag = this.prev
+        this.tag.tags = this.prev.tags
+        this.tag.name = this.prev.name
       },
       tagPlaylist: function(ext_id) {
         var url, method, data;
@@ -135,4 +148,23 @@
 
 
 <style scoped>
+  .tag-name {
+    max-height: 52px;
+    border-bottom: solid 1px white;
+  }
+  .tag-name.v-input--is-readonly {
+    border-bottom: 0;
+  }
+</style>
+
+<style>
+  .v-text-field>.v-input__control>.v-input__slot:before { border-style: none !important; }
+  .v-text-field>.v-input__control>.v-input__slot:after { border-style: none !important; }
+  .tag-name>.v-input__control {
+    max-height: 52px;
+  }
+  .tag-name.v-text-field {
+    padding-left: 12px;
+    margin-top: 0;
+  }
 </style>
