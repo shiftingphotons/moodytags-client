@@ -11,7 +11,6 @@
           v-bind="attrs"
           v-on="on"
           :color="playlist.tags && playlist.tags.length ? 'blue' : 'gray'"
-          @click="cleanupTags"
           class="ma-2 pa-4"
           x-small
           icon
@@ -24,7 +23,7 @@
         <div>
           <v-chip
 						v-for="(tag, index) in playlist.tags"
-						:key="tag"
+						:key="index"
             class="ma-2"
             @click:close="removeTag(tag, index)"
             close
@@ -33,26 +32,19 @@
           </v-chip>
         </div>
         <v-divider></v-divider>
-        <v-card-title>Time of day</v-card-title>
-        <div>
-          <v-chip
-						v-for="(time, index) in times"
-						:key="time"
-            class="ma-2"
-            @click="addTag(time, index)"
+
+        <div
+          v-for="(collection, inde) in tags"
+          :key="inde"
           >
-            {{ time }}
-          </v-chip>
-        </div>
-        <v-card-title>Mood</v-card-title>
-        <div>
+          <v-card-title>{{ collection.name }}</v-card-title>
           <v-chip
-						v-for="(mood, index) in moods"
-						:key="mood"
+						v-for="(tag, ind) in collection.tags"
+						:key="ind"
             class="ma-2"
-            @click="addTag(mood, index)"
+            @click="addTag(tag, ind)"
           >
-            {{ mood }}
+            {{ tag }}
           </v-chip>
         </div>
         <v-card-actions>
@@ -75,33 +67,18 @@
       menu: false,
       message: false,
       hints: true,
-      times: ['morning', 'afternoon', 'night'],
-      moods: ['nostalgic', 'lazy', 'inspired'],
     }),
-    props: ['playlist'],
+    props: ['playlist', 'tags'],
     methods: {
-      cleanupTags: function() {
-        var playlist = this.playlist
-        if (this.playlist.tags) {
-          this.moods = this.moods.filter(function(mood) {
-            return playlist.tags.indexOf(mood) == -1
-          })
-          this.times = this.times.filter(function(time) {
-            return playlist.tags.indexOf(time) == -1
-          })
-        }
-      },
-      addTag: function(tag, index) {
+      addTag: function(tag) {
         if (this.playlist.tags) {
           this.playlist.tags.push(tag)
         } else {
           this.playlist.tags = [tag]
         }
-        this[this.findTagHome(tag)].splice(index, 1)
       },
       removeTag: function(tag, index) {
         this.playlist.tags.splice(index, 1)
-        this[this.findTagHome(tag)].push(tag)
       },
       tagPlaylist: function(ext_id) {
         var url, method, data;
@@ -123,15 +100,6 @@
           withCredentials: true
         });
         this.menu = false;
-      },
-      findTagHome: function(tag) {
-        // I need this to be super basic for now
-
-        if (['morning', 'afternoon', 'night'].indexOf(tag) == -1) {
-          return "moods"
-        } else {
-          return "times"
-        }
       }
     }
   }

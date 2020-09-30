@@ -42,7 +42,7 @@
             <v-card-title class="d-inline-block text-subtitle-1 text-truncate pa-2 pr-0 playlist-card-title">
 							{{ p.name }}
 						</v-card-title>
-            <TagMenu :playlist="p"></TagMenu>
+            <TagMenu :playlist="p" :tags="tags"></TagMenu>
 					</v-card>
 				</v-card>
 			</v-container>
@@ -61,8 +61,10 @@ import Footer from './Footer.vue'
 export default {
   data () {
     this.getPlaylists()
+    this.getTags()
     return {
       playlists: [],
+      tags: [],
       page: 1,
       pageCount: 1,
     }
@@ -79,7 +81,12 @@ export default {
             this.playlists = response.data.items,
             this.pageCount = Math.ceil(response.data.total / 50)
         ));
-    }
+    },
+    getTags: function() {
+      axios
+        .get('http://localhost:3000/api/v1/user/tags', {withCredentials: true})
+          .then(response => ( this.tags = response.data));
+    },
   },
   components: {
     TagMenu,
