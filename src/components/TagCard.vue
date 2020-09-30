@@ -14,8 +14,9 @@
 
     <v-card-text class="d-flex justify-start flex-wrap">
       <v-btn icon
-          height="40px"
-          width="40px"
+          width="24"
+          height="24"
+          class="mt-1"
           v-if="editable"
           @click="addChip">
         <v-icon small>fa-plus-circle</v-icon>
@@ -23,7 +24,7 @@
       <v-chip
         v-for="(name, index) in tag.tags"
         :key="index"
-        class="ma-2"
+        class="ma-1"
         @click:close="removeTag(index)"
         small
         color="white"
@@ -39,10 +40,10 @@
           v-if="!editable"
           @click="edit"
           bottom
-          class="ml-1 mt-3">
+          class="mb-2 ml-1 mt-3">
         <v-icon>far fa-edit</v-icon>
       </v-btn>
-      <v-btn class="mb-3 mt-5 ml-4"
+      <v-btn class="mb-2 mt-5 ml-4"
           v-if="editable"
           v-on:click="save"
           outlined
@@ -53,7 +54,7 @@
         <v-icon class="ma-2" small>fa-check</v-icon>
         Save
       </v-btn>
-      <v-btn class="mb-3 mt-5 mr-4"
+      <v-btn class="mb-2 mt-5 mr-4"
           v-if="editable"
           @click="cancel"
           outlined
