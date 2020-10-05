@@ -22,8 +22,8 @@
         <v-card-title>Selected</v-card-title>
         <v-chip-group>
           <v-chip
-						v-for="(tag, index) in playlist.tags"
-						:key="index"
+            v-for="(tag, index) in playlist.tags"
+            :key="index"
             class="ma-2"
             @click:close="removeTag(tag, index)"
             close
@@ -41,8 +41,8 @@
           >
           <v-card-title>{{ collection.name }}</v-card-title>
           <v-chip
-						v-for="(tag, ind) in collection.tags"
-						:key="tag"
+            v-for="(tag, ind) in collection.tags"
+            :key="tag"
             :class="playlist.tags.indexOf(tag) != -1 ? 'ma-2 selected' : 'ma-2'"
             @click="addTag(tag, ind)"
           >

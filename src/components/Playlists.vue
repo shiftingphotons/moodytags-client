@@ -1,6 +1,6 @@
 <template>
-	<div id="app">
-		<v-app id="inspire">
+  <div id="app">
+    <v-app id="inspire">
       <NavBar></NavBar>
       <v-row v-if="!playlists.length" align="start" justify="center">
         <v-col>
@@ -8,7 +8,7 @@
           <v-img src="@/assets/undraw_nature_m5ll.svg" max-width="500" class="empty-state-img"></v-img>
         </v-col>
       </v-row>
-			<v-container>
+      <v-container>
         <v-row class="d-flex flex-row-reverse">
           <v-col lg="3" md="3">
             <v-pagination
@@ -21,34 +21,34 @@
             ></v-pagination>
           </v-col>
         </v-row>
-				<v-card
-					class="d-flex justify-space-between flex-wrap"
-					color="lighten-2"
-					flat
-					tile
-				>
-					<v-card
-						v-for="p in playlists"
-						:key="p.id"
-						class="ma-3"
-						width="200"
-					>
-						<v-img
-							:src="p.images[0] ? p.images[0].url : undefined"
-							height="200"
-							width="200"
-						></v-img>
+        <v-card
+          class="d-flex justify-space-between flex-wrap"
+          color="lighten-2"
+          flat
+          tile
+        >
+          <v-card
+            v-for="p in playlists"
+            :key="p.id"
+            class="ma-3"
+            width="200"
+          >
+            <v-img
+              :src="p.images[0] ? p.images[0].url : undefined"
+              height="200"
+              width="200"
+            ></v-img>
 
             <v-card-title class="d-inline-block text-subtitle-1 text-truncate pa-2 pr-0 playlist-card-title">
-							{{ p.name }}
-						</v-card-title>
+              {{ p.name }}
+            </v-card-title>
             <TagMenu :playlist="p" :tags="tags"></TagMenu>
-					</v-card>
-				</v-card>
-			</v-container>
+          </v-card>
+        </v-card>
+      </v-container>
       <Footer></Footer>
-		</v-app>
-	</div>
+    </v-app>
+  </div>
 </template>
 
 <script>
@@ -100,12 +100,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #app {
-		max-width: 1280px;
-		margin: 0 auto;
-		font-family: Roboto;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		color: #343534;
+    max-width: 1280px;
+    margin: 0 auto;
+    font-family: Roboto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #343534;
 }
 .playlist-card-title {
     width: 200px;

@@ -2,7 +2,7 @@
   <div id="app">
     <v-app id="inspire">
       <NavBar></NavBar>
-			<v-container>
+      <v-container>
         <div>
           <h1 class="headline text-center">Tag collections</h1>
           <p class="text-subtitle-1 text-center mb-8">
@@ -35,7 +35,7 @@
             </v-btn>
           </v-col>
         </div>
-				<v-row>
+        <v-row>
           <v-col
             v-for="tag in tags"
             :key="tag.id"
@@ -43,8 +43,8 @@
             :cols="gridView ? 4 : 12">
             <TagCard v-on:save="save" :tag="tag"></TagCard>
           </v-col>
-				</v-row>
-			</v-container>
+        </v-row>
+      </v-container>
       <Footer></Footer>
     </v-app>
   </div>
