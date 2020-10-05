@@ -19,8 +19,8 @@
         </v-btn>
       </template>
       <v-card>
-        <v-card-title>Tags</v-card-title>
-        <div>
+        <v-card-title>Selected</v-card-title>
+        <v-chip-group>
           <v-chip
 						v-for="(tag, index) in playlist.tags"
 						:key="index"
@@ -30,23 +30,25 @@
           >
             {{ tag }}
           </v-chip>
-        </div>
+        </v-chip-group>
         <v-divider></v-divider>
 
-        <div
+        <v-chip-group
           v-for="(collection, inde) in tags"
           :key="inde"
+          multiple
+          column
           >
           <v-card-title>{{ collection.name }}</v-card-title>
           <v-chip
 						v-for="(tag, ind) in collection.tags"
-						:key="ind"
-            class="ma-2"
+						:key="tag"
+            :class="playlist.tags.indexOf(tag) != -1 ? 'ma-2 selected' : 'ma-2'"
             @click="addTag(tag, ind)"
           >
             {{ tag }}
           </v-chip>
-        </div>
+        </v-chip-group>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="primary" @click="tagPlaylist(playlist.id)" text>Save</v-btn>
@@ -71,13 +73,20 @@
     props: ['playlist', 'tags'],
     methods: {
       addTag: function(tag) {
+        if (this.playlist.tags.indexOf(tag) != -1) {
+          this.removeTag(tag)
+          return
+        }
         if (this.playlist.tags) {
           this.playlist.tags.push(tag)
         } else {
           this.playlist.tags = [tag]
         }
       },
-      removeTag: function(tag, index) {
+      removeTag: function(tag, index=undefined) {
+        if (index === undefined) {
+          index = this.playlist.tags.indexOf(tag)
+        }
         this.playlist.tags.splice(index, 1)
       },
       tagPlaylist: function(ext_id) {
@@ -107,4 +116,5 @@
 
 
 <style scoped>
+  .selected { background: #00AA95 !important; color: white !important; }
 </style>
