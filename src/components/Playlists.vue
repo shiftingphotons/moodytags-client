@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-app :style="{background: $vuetify.theme.themes['light'].background}">
+    <v-app>
       <NavBar></NavBar>
       <v-row v-if="!playlists.length" align="start" justify="center">
         <v-col>

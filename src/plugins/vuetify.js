@@ -1,18 +1,12 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify';
-import 'vuetify/dist/vuetify.min.css';
+import Vuetify from 'vuetify/lib';
 
-Vue.use(Vuetify);
-
-export default new Vuetify({
+var opts = {
   icons: {
     iconfont: 'fa',
   },
   theme: {
-    themes: {
-      light: {
-        background: '#FBF9F4',
-      },
-    },
-  },
-});
+    dark: false
+  }
+}
+
+export default new Vuetify(opts);
