@@ -1,8 +1,8 @@
 <template>
-  <v-app-bar class="d-flex justify-center" color="white" max-height="64" flat>
-    <v-btn @click="goHome" color="white" depressed>Home</v-btn>
-    <v-btn @click="goTags" color="white" depressed>Tags </v-btn>
-    <v-btn @click="goPlaylists" color="white" depressed>Playlists </v-btn>
+  <v-app-bar class="d-flex justify-center" color="#FBF9F4" max-height="64" flat>
+    <v-btn @click="goHome" color="#FBF9F4" depressed>Home</v-btn>
+    <v-btn @click="goTags" color="#FBF9F4" depressed>Tags </v-btn>
+    <v-btn @click="goPlaylists" color="#FBF9F4" depressed>Playlists </v-btn>
   </v-app-bar>
 </template>
 

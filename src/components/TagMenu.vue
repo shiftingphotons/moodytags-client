@@ -10,12 +10,12 @@
         <v-btn
           v-bind="attrs"
           v-on="on"
-          :color="playlist.tags && playlist.tags.length ? 'blue' : 'gray'"
-          class="ma-2 pa-4"
-          x-small
+          color="white"
+          class="ma-1"
+          right
           icon
           >
-          <v-icon>fa-tags</v-icon>
+          <v-icon small>fas fa-tags</v-icon>
         </v-btn>
       </template>
       <v-card>

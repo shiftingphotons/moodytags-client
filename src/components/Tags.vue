@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-app id="inspire">
+    <v-app :style="{background: $vuetify.theme.themes['light'].background}">
       <NavBar></NavBar>
       <v-container>
         <div>
@@ -99,7 +99,7 @@ export default {
 #app {
     max-width: 1280px;
     margin: 0 auto;
-    font-family: Roboto;
+    font-family: Inter;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #343534;
