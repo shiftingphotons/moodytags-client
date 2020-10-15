@@ -12,8 +12,6 @@ const routes = {
   '/playlists': Playlists
 }
 
-Vue.use(vuetify);
-
 const app = new Vue({
   el: '#app',
 
