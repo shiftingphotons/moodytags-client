@@ -17,30 +17,30 @@
           <h1 class="section-title pa-4" v-text="tag"></h1>
 
           <v-col class="d-flex flex-row pa-0" cols="12">
-						<v-slide-group
-							show-arrows
-						>
-							<v-card
-								class="mr-8 rounded-lg"
-								v-for="p in playlists" :key="p.id"
-								width="200"
-								color="#FBF9F4"
-								flat
-							>
-								<a :href="p.uri">
-									<v-img
-										class="rounded-lg"
-										:src="p.images[0] ? p.images[0].url : undefined"
-										height="200"
-										width="200"
-									></v-img>
-								</a>
+            <v-slide-group
+              show-arrows
+            >
+              <v-card
+                class="mr-8 rounded-lg"
+                v-for="p in playlists" :key="p.id"
+                width="200"
+                color="#FBF9F4"
+                flat
+              >
+                <a :href="p.uri">
+                  <v-img
+                    class="rounded-lg"
+                    :src="p.images[0] ? p.images[0].url : undefined"
+                    height="200"
+                    width="200"
+                  ></v-img>
+                </a>
 
-								<v-card-title class="d-inline-block text-subtitle-1 text-truncate pa-2 pr-0 playlist-card-title">
-									{{ p.name }}
-								</v-card-title>
-							</v-card>
-						</v-slide-group>
+                <v-card-title class="d-inline-block text-subtitle-1 text-truncate pa-2 pr-0 playlist-card-title">
+                  {{ p.name }}
+                </v-card-title>
+              </v-card>
+            </v-slide-group>
           </v-col>
           <v-divider></v-divider>
         </v-row>
@@ -98,7 +98,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #app {
-		max-width: 100%;
+    max-width: 100%;
     margin: 0 auto;
     font-family: Inter;
     -webkit-font-smoothing: antialiased;
@@ -133,10 +133,10 @@ export default {
 }
 
 @media (min-width: 1264px) {
-	.container {
-			max-width: 100%;
-			padding: 0;
-	}
+  .container {
+      max-width: 100%;
+      padding: 0;
+  }
 }
 </style>
 

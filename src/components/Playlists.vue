@@ -61,23 +61,6 @@
                 <TagMenu :playlist="p" :tags="tags"></TagMenu>
               </v-card-actions>
             </v-card>
-          </v-col>
-          <!-- <v&#45;card -->
-          <!--   v&#45;for="p in playlists" -->
-          <!--   :key="p.id" -->
-          <!--   class="ma&#45;3" -->
-          <!--   width="200" -->
-          <!-- > -->
-          <!--   <v&#45;img -->
-          <!--     :src="p.images[0] ? p.images[0].url : undefined" -->
-          <!--     height="200" -->
-          <!--     width="200" -->
-          <!--   ></v&#45;img> -->
-          <!--  -->
-            <!-- <v&#45;card&#45;title class="d&#45;inline&#45;block text&#45;subtitle&#45;1 text&#45;truncate pa&#45;2 pr&#45;0 playlist&#45;card&#45;title"> -->
-          <!--     {{ p.name }} -->
-          <!--   </v&#45;card&#45;title> -->
-          <!-- </v&#45;card> -->
         </v-card>
       </v-container>
       <Footer></Footer>
@@ -158,7 +141,7 @@ export default {
 <style>
 .theme--light.v-pagination .v-pagination__item {
     background-color: #FBF9F4 !important;
-		outline: 0;
+    outline: 0;
 }
 .theme--light.v-pagination .v-pagination__navigation {
     background-color: #FBF9F4 !important;
