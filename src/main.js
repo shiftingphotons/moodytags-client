@@ -1,14 +1,14 @@
 import Vue from 'vue'
-import Home from './components/Home.vue'
-import Tags from './components/Tags.vue'
+import Landing from './components/Landing.vue'
+import App from './components/App.vue'
 import Playlists from './components/Playlists.vue'
 import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 
 const routes = {
-  '/': Home,
-  '/tags': Tags,
+  '/': Landing,
+  '/app': App,
   '/playlists': Playlists
 }
 
