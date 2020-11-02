@@ -3,12 +3,12 @@
     <v-app id="inspire">
       <v-row class="mb-4">
         <v-col cols="3">
-					<div class="ml-6 float-left">
-						<img class="logo" src="../assets/logo.png" width="64" height="64"/>
-						<h1 class="text-center">
-							<span class="brown-text">Moody</span><span class="pl-2 green-text">tags</span>
-						</h1>
-					</div>
+          <div class="ml-6 float-left">
+            <img class="logo" src="../assets/logo.png" width="64" height="64"/>
+            <h1 class="text-center">
+              <span class="brown-text">Moody</span><span class="pl-2 green-text">tags</span>
+            </h1>
+          </div>
         </v-col>
         <v-col cols="9">
           <img class="app-screenshot" src="../assets/screen-mockup.png"/>
@@ -29,7 +29,7 @@
       </v-row>
       <v-row class="brown-background">
         <v-col cols="6" class="pb-0 mt-6">
-					<div class="pt-4">
+          <div class="pt-4">
             <div class="text-center">
               <v-btn
                 href="http://localhost:3000/auth/spotify"
@@ -41,11 +41,11 @@
                 Login with Spotify
               </v-btn>
             </div>
-						<hgroup class="ml-6 mt-6">
+            <hgroup class="ml-6 mt-6">
               <h1 class="green-text font-weight-black">Free.</h1>
               <h1 class="green-text font-weight-black">Open Source.</h1>
-						</hgroup>
-					</div>
+            </hgroup>
+          </div>
         </v-col>
       </v-row>
       <v-row align="end" class="brown-background">
@@ -62,7 +62,7 @@
 <script>
 
 export default {
-	name: 'Landing',
+  name: 'Landing',
   data () {
     return { }
   },
