@@ -25,13 +25,13 @@
                 class="mr-1"
                 large
                 @click="gridView = true">
-              <v-icon>fa-th</v-icon>
+              <v-icon>far fa-th</v-icon>
             </v-btn>
             <v-btn icon
                 color="#385F73"
                 large
                 @click="gridView = false">
-              <v-icon>fa-bars</v-icon>
+              <v-icon>far fa-bars</v-icon>
             </v-btn>
           </v-col>
         </div>
@@ -97,16 +97,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #app {
-    max-width: 1280px;
-    margin: 0 auto;
-    font-family: Inter;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #343534;
+  max-width: 1280px;
+  margin: 0 auto;
+  font-family: Inter;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #343534;
 }
 .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 </style>

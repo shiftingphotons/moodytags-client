@@ -7,7 +7,7 @@
           <v-col>
             <h2 class="text-center pb-8 empty-state-title" v-if="!sections">Fetching your tags...</h2>
             <h2 class="text-center pb-8 empty-state-title" v-if="sections && Object.keys(sections).length == 0">It's a bit empty here :( <br> Try tagging some playlists.</h2>
-            <v-img src="@/assets/undraw_compose_music_ovo2.svg" max-width="600" class="empty-state-img"></v-img>
+            <v-img src="@/assets/undraw_compose_music_ovo2.svg" class="my-4 mx-auto empty-state-img"></v-img>
           </v-col>
         </v-row>
         <v-row
@@ -97,59 +97,58 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #app {
-    max-width: 100%;
-    margin: 0 auto;
-    font-family: Inter;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #343534;
+  max-width: 100%;
+  margin: 0 auto;
+  font-family: Inter;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #343534;
 }
 .section {
   margin: 20px 0 20px 0;
   padding-bottom: 15px;
   border-radius: 10px;
-  /* background: linear-gradient(180deg, #00aa9585, #f8fffe); */
 }
 .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-left: 8px;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-left: 8px;
 }
 .playlist-card-title {
-    width: 200px;
-    font-size: 0.9rem !important;
-    font-weight: 500 !important;
-    cursor: default;
+  width: 200px;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  cursor: default;
 }
 .empty-state-img {
-    margin: 50px auto;
+  max-width: 600px;
 }
 .empty-state-title {
-    color: #00AA95;
-    letter-spacing: 0.4px;
-    font-weight: 500;
+  color: #00AA95;
+  letter-spacing: 0.4px;
+  font-weight: 500;
 }
 
 @media (min-width: 1264px) {
-  .container {
-      max-width: 100%;
-      padding: 0;
-  }
+.container {
+    max-width: 100%;
+    padding: 0;
+}
 }
 </style>
 
 <style>
 .v-slide-group {
-    margin-left: 52px;
+  margin-left: 52px;
 }
 .v-slide-group--is-overflowing {
-    margin-left: 0;
+  margin-left: 0;
 }
 .v-slide-group__prev--disabled > .theme--light.v-icon.v-icon.v-icon--disabled {
-    color: rgba(0,0,0,0) !important
+  color: rgba(0,0,0,0) !important
 }
 .v-slide-group__next--disabled > .theme--light.v-icon.v-icon.v-icon--disabled {
-    color: rgba(0,0,0,0) !important
+  color: rgba(0,0,0,0) !important
 }
 </style>

@@ -1,13 +1,28 @@
 <template>
-  <v-footer padless color="#FBF9F4">
+  <div class="d-flex row">
     <v-col
-      class="text-right"
+      class="align-self-end text-right max-1280 mx-auto"
       cols="12"
     >
-      Moody tags <strong>v.0.0.1</strong>
+      <span class="version-text">Moody tags v{{ $root.version }}</span>
     </v-col>
-  </v-footer>
+  </div>
 </template>
 
-<script></script>
-<style scoped></style>
+<script>
+
+export default {
+  name: 'Footer',
+  data () {
+    return {}
+  }
+}
+</script>
+<style scoped>
+.max-1280 {
+  max-width: 1280px;
+}
+.version-text {
+  font-size: 0.85em;
+}
+</style>

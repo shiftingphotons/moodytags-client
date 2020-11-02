@@ -5,7 +5,7 @@
       <v-row v-if="!playlists.length" align="start" justify="center">
         <v-col>
           <h2 class="text-center pb-8 empty-state-title">Getting the playlists! <br> Enjoy nature in the meantime.</h2>
-          <v-img src="@/assets/undraw_nature_m5ll.svg" max-width="500" class="empty-state-img"></v-img>
+          <v-img src="@/assets/undraw_nature_m5ll.svg" class="my-4 mx-auto empty-state-img"></v-img>
         </v-col>
       </v-row>
       <v-container>
@@ -19,6 +19,8 @@
               @next="changePage()"
               @prev="changePage()"
               color="#00AA95"
+              next-icon="far fa-angle-right"
+              prev-icon="far fa-angle-left"
               circle
             ></v-pagination>
           </v-col>
@@ -118,36 +120,36 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #app {
-    max-width: 1280px;
-    margin: 0 auto;
-    font-family: Inter;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #343534;
+  max-width: 1280px;
+  margin: 0 auto;
+  font-family: Inter;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #343534;
 }
 .playlist-card-title {
-    width: 200px;
-    font-size: 0.9rem !important;
-    font-weight: 500 !important;
+  width: 200px;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
 }
 .empty-state-img {
-    margin: 50px auto;
+  max-width: 400px;
 }
 .empty-state-title {
-    color: #00AA95;
-    letter-spacing: 0.4px;
-    font-weight: 500;
+  color: #00AA95;
+  letter-spacing: 0.4px;
+  font-weight: 500;
 }
 </style>
 <style>
 .theme--light.v-pagination .v-pagination__item {
-    background-color: #FBF9F4 !important;
-    outline: 0;
+  background-color: #FBF9F4 !important;
+  outline: 0;
 }
 .theme--light.v-pagination .v-pagination__navigation {
-    background-color: #FBF9F4 !important;
+  background-color: #FBF9F4 !important;
 }
 .theme--light.v-pagination .v-pagination__item--active {
-    background-color: rgb(0, 170, 149) !important
+  background-color: rgb(0, 170, 149) !important
 }
 </style>
