@@ -61,6 +61,7 @@
                 <TagMenu :playlist="p" :tags="tags"></TagMenu>
               </v-card-actions>
             </v-card>
+          </v-col>
         </v-card>
       </v-container>
       <Footer></Footer>
