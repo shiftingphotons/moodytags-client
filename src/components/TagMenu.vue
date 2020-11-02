@@ -10,51 +10,45 @@
         <v-btn
           v-bind="attrs"
           v-on="on"
-          :color="playlist.tags && playlist.tags.length ? 'blue' : 'gray'"
-          @click="cleanupTags"
-          class="ma-2 pa-4"
-          x-small
+          color="white"
+          class="ma-1"
+          right
           icon
           >
-          <v-icon>fa-tags</v-icon>
+          <v-icon small>fal fa-tags</v-icon>
         </v-btn>
       </template>
       <v-card>
-        <v-card-title>Tags</v-card-title>
-        <div>
+        <v-card-title>Selected</v-card-title>
+        <v-chip-group>
           <v-chip
-						v-for="(tag, index) in playlist.tags"
-						:key="tag"
+            v-for="(tag, index) in playlist.tags"
+            :key="index"
             class="ma-2"
             @click:close="removeTag(tag, index)"
             close
           >
             {{ tag }}
           </v-chip>
-        </div>
+        </v-chip-group>
         <v-divider></v-divider>
-        <v-card-title>Time of day</v-card-title>
-        <div>
-          <v-chip
-						v-for="(time, index) in times"
-						:key="time"
-            class="ma-2"
-            @click="addTag(time, index)"
+
+        <v-chip-group
+          v-for="(collection, inde) in tags"
+          :key="inde"
+          multiple
+          column
           >
-            {{ time }}
-          </v-chip>
-        </div>
-        <v-card-title>Mood</v-card-title>
-        <div>
+          <v-card-title>{{ collection.name }}</v-card-title>
           <v-chip
-						v-for="(mood, index) in moods"
-						:key="mood"
-            class="ma-2"
-            @click="addTag(mood, index)"
+            v-for="(tag, ind) in collection.tags"
+            :key="tag"
+            :class="playlist.tags.indexOf(tag) != -1 ? 'ma-2 selected' : 'ma-2'"
+            @click="addTag(tag, ind)"
           >
-            {{ mood }}
+            {{ tag }}
           </v-chip>
-        </div>
+        </v-chip-group>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="primary" @click="tagPlaylist(playlist.id)" text>Save</v-btn>
@@ -75,33 +69,25 @@
       menu: false,
       message: false,
       hints: true,
-      times: ['morning', 'afternoon', 'night'],
-      moods: ['nostalgic', 'lazy', 'inspired'],
     }),
-    props: ['playlist'],
+    props: ['playlist', 'tags'],
     methods: {
-      cleanupTags: function() {
-        var playlist = this.playlist
-        if (this.playlist.tags) {
-          this.moods = this.moods.filter(function(mood) {
-            return playlist.tags.indexOf(mood) == -1
-          })
-          this.times = this.times.filter(function(time) {
-            return playlist.tags.indexOf(time) == -1
-          })
+      addTag: function(tag) {
+        if (this.playlist.tags.indexOf(tag) != -1) {
+          this.removeTag(tag)
+          return
         }
-      },
-      addTag: function(tag, index) {
         if (this.playlist.tags) {
           this.playlist.tags.push(tag)
         } else {
           this.playlist.tags = [tag]
         }
-        this[this.findTagHome(tag)].splice(index, 1)
       },
-      removeTag: function(tag, index) {
+      removeTag: function(tag, index=undefined) {
+        if (index === undefined) {
+          index = this.playlist.tags.indexOf(tag)
+        }
         this.playlist.tags.splice(index, 1)
-        this[this.findTagHome(tag)].push(tag)
       },
       tagPlaylist: function(ext_id) {
         var url, method, data;
@@ -123,15 +109,6 @@
           withCredentials: true
         });
         this.menu = false;
-      },
-      findTagHome: function(tag) {
-        // I need this to be super basic for now
-
-        if (['morning', 'afternoon', 'night'].indexOf(tag) == -1) {
-          return "moods"
-        } else {
-          return "times"
-        }
       }
     }
   }
@@ -139,4 +116,5 @@
 
 
 <style scoped>
+  .selected { background: #00AA95 !important; color: white !important; }
 </style>
