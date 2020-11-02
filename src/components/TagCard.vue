@@ -19,7 +19,7 @@
           class="mt-1"
           v-if="editable"
           @click="addChip">
-        <v-icon small>fa-plus-circle</v-icon>
+        <v-icon small>fal fa-plus-circle</v-icon>
       </v-btn>
       <v-chip
         v-for="(name, index) in tag.tags"
@@ -41,7 +41,7 @@
           @click="edit"
           bottom
           class="mb-2 ml-1 mt-3">
-        <v-icon>far fa-edit</v-icon>
+        <v-icon>fal fa-edit</v-icon>
       </v-btn>
       <v-btn class="mb-2 mt-5 ml-4"
           v-if="editable"

@@ -118,7 +118,7 @@ export default {
     },
     getTags: function() {
       axios
-        .get('http://localhost:3000/api/v1/user/tags', {withCredentials: true})
+        .get('http://localhost:3000/api/v1/tag_collections', {withCredentials: true})
           .then(response => ( this.tags = response.data));
     },
   },

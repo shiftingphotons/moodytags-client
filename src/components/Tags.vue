@@ -16,7 +16,7 @@
                 class="mb-4"
                 color="#385F73"
                 @click="addTag">
-              <v-icon x-large>fa-plus-circle</v-icon>
+              <v-icon x-large>fal fa-plus-circle</v-icon>
             </v-btn>
           </v-col>
           <v-col cols="4" class="text-right">
@@ -62,7 +62,7 @@ const axios = require('axios');
 export default {
   data () {
     axios
-      .get('http://localhost:3000/api/v1/user/tags', {withCredentials: true})
+      .get('http://localhost:3000/api/v1/tag_collections', {withCredentials: true})
         .then(response => (this.tags = response.data))
     return {
       tags: this.tags,
@@ -81,7 +81,7 @@ export default {
     },
     save: function() {
       axios
-        .put('http://localhost:3000/api/v1/user/tags', {tags: this.tags}, {withCredentials: true})
+        .put('http://localhost:3000/api/v1/tag_collections', {tags: this.tags}, {withCredentials: true})
     }
   },
   components: {

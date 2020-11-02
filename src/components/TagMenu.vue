@@ -15,7 +15,7 @@
           right
           icon
           >
-          <v-icon small>fas fa-tags</v-icon>
+          <v-icon small>fal fa-tags</v-icon>
         </v-btn>
       </template>
       <v-card>
