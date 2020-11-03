@@ -71,8 +71,6 @@
 </template>
 
 <script>
-const axios = require('axios');
-
 export default {
   name: "TagCard",
   data: () => ({
@@ -113,36 +111,6 @@ export default {
       this.editable = false
       this.tag.tags = this.prev.tags
       this.tag.name = this.prev.name
-    },
-    tagPlaylist: function(ext_id) {
-      var url, method, data;
-      var tags = this.playlist.tags
-
-      if (this.playlist.taggable_id) {
-        method = 'patch'
-        url = 'http://localhost:3000/api/v1/taggables' + '/' + this.playlist.taggable_id;
-        data = {tags: tags};
-      } else {
-        method = 'post'
-        url = 'http://localhost:3000/api/v1/taggables';
-        data = {ext_id: ext_id, tags: tags};
-      }
-      axios({
-        method: method,
-        url: url,
-        data: data,
-        withCredentials: true
-      });
-      this.menu = false;
-    },
-    findTagHome: function(tag) {
-      // I need this to be super basic for now
-
-      if (['morning', 'afternoon', 'night'].indexOf(tag) == -1) {
-        return "moods"
-      } else {
-        return "times"
-      }
     }
   }
 }
@@ -160,8 +128,8 @@ export default {
 </style>
 
 <style>
-.v-text-field>.v-input__control>.v-input__slot:before { border-style: none !important; }
-.v-text-field>.v-input__control>.v-input__slot:after { border-style: none !important; }
+.headline>.v-input__control>.v-input__slot:before { border-style: none !important; }
+.headline>.v-input__control>.v-input__slot:after { border-style: none !important; }
 .tag-name>.v-input__control {
   max-height: 52px;
 }

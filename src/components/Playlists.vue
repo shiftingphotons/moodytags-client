@@ -60,7 +60,7 @@
                 </v-avatar>
               </div>
               <v-card-actions>
-                <TagMenu :playlist="p" :tags="tags"></TagMenu>
+                <TagMenu :playlist="p" :tags="autoselectTags"></TagMenu>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -90,6 +90,16 @@ export default {
     }
   },
   computed: {
+    autoselectTags: function() {
+      var tagList = []
+      this.tags.forEach(function(collection) {
+        tagList.push({header: collection.name})
+        collection.tags.forEach(function(tag) {
+          tagList.push({name: tag});
+        });
+      });
+      return tagList
+    }
   },
   methods : {
     changePage: function() {this.getPlaylists(this.page)},

@@ -1,3 +1,5 @@
+<img src="gh_logo.png" height="100"/>
+
 # moody_tags_client
 
 ## Project setup
