@@ -25,6 +25,7 @@
         v-for="(name, index) in tag.tags"
         :key="index"
         class="ma-1"
+        close-icon="fal fa-times-circle"
         @click:close="removeTag(index)"
         small
         color="white"
@@ -51,7 +52,7 @@
           bottom
           color="green"
           small>
-        <v-icon class="ma-2" small>fa-check</v-icon>
+        <v-icon class="ma-2" small>far fa-check</v-icon>
         Save
       </v-btn>
       <v-btn class="mb-2 mt-5 mr-4"
@@ -62,7 +63,7 @@
           bottom
           color="red"
           small>
-        <v-icon class="ma-2" small>fa-minus</v-icon>
+        <v-icon class="ma-2" small>far fa-minus</v-icon>
         Cancel
       </v-btn>
     </v-card-actions>

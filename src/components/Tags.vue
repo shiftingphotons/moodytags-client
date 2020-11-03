@@ -110,3 +110,9 @@ export default {
   letter-spacing: 1px;
 }
 </style>
+<style>
+
+v-card__subtitle, .v-card__text {
+  font-weight: 700;
+}
+</style>
