@@ -25,6 +25,7 @@
         v-for="(name, index) in tag.tags"
         :key="index"
         class="ma-1"
+        close-icon="fal fa-times-circle"
         @click:close="removeTag(index)"
         small
         color="white"
@@ -51,7 +52,7 @@
           bottom
           color="green"
           small>
-        <v-icon class="ma-2" small>fa-check</v-icon>
+        <v-icon class="ma-2" small>far fa-check</v-icon>
         Save
       </v-btn>
       <v-btn class="mb-2 mt-5 mr-4"
@@ -62,7 +63,7 @@
           bottom
           color="red"
           small>
-        <v-icon class="ma-2" small>fa-minus</v-icon>
+        <v-icon class="ma-2" small>far fa-minus</v-icon>
         Cancel
       </v-btn>
     </v-card-actions>
@@ -70,102 +71,102 @@
 </template>
 
 <script>
-  const axios = require('axios');
+const axios = require('axios');
 
-  export default {
-    name: "TagCard",
-    data: () => ({
-      editable: false,
-    }),
-    props: ['tag'],
-    methods: {
-      handleInput: function(e) {
-        this.editedTagName = e.target.innerText
-      },
-      edit: function() {
-        this.editable = true
-        this.prev = {
-          tags: [...this.tag.tags],
-          name: this.tag.name
-        }
-        console.log(this.prev)
-      },
-      addChip: function() {
-        var tag = window.prompt('How should the tag be named?')
-        if (tag && tag.length > 0) {
-          if (this.tag.tags) {
-            this.tag.tags.push(tag)
-          } else {
-            this.tag.tags = [tag]
-          }
-        }
-      },
-      removeTag: function(index) {
-        this.tag.tags.splice(index, 1)
-      },
-      save: function() {
-        // this.tag.name = this.editedTagName
-        this.editable = false
-        this.$emit('save')
-      },
-      cancel: function() {
-        this.editable = false
-        this.tag.tags = this.prev.tags
-        this.tag.name = this.prev.name
-      },
-      tagPlaylist: function(ext_id) {
-        var url, method, data;
-        var tags = this.playlist.tags
-
-        if (this.playlist.taggable_id) {
-          method = 'patch'
-          url = 'http://localhost:3000/api/v1/taggables' + '/' + this.playlist.taggable_id;
-          data = {tags: tags};
+export default {
+  name: "TagCard",
+  data: () => ({
+    editable: false,
+  }),
+  props: ['tag'],
+  methods: {
+    handleInput: function(e) {
+      this.editedTagName = e.target.innerText
+    },
+    edit: function() {
+      this.editable = true
+      this.prev = {
+        tags: [...this.tag.tags],
+        name: this.tag.name
+      }
+      console.log(this.prev)
+    },
+    addChip: function() {
+      var tag = window.prompt('How should the tag be named?')
+      if (tag && tag.length > 0) {
+        if (this.tag.tags) {
+          this.tag.tags.push(tag)
         } else {
-          method = 'post'
-          url = 'http://localhost:3000/api/v1/taggables';
-          data = {ext_id: ext_id, tags: tags};
+          this.tag.tags = [tag]
         }
-        axios({
-          method: method,
-          url: url,
-          data: data,
-          withCredentials: true
-        });
-        this.menu = false;
-      },
-      findTagHome: function(tag) {
-        // I need this to be super basic for now
+      }
+    },
+    removeTag: function(index) {
+      this.tag.tags.splice(index, 1)
+    },
+    save: function() {
+      // this.tag.name = this.editedTagName
+      this.editable = false
+      this.$emit('save')
+    },
+    cancel: function() {
+      this.editable = false
+      this.tag.tags = this.prev.tags
+      this.tag.name = this.prev.name
+    },
+    tagPlaylist: function(ext_id) {
+      var url, method, data;
+      var tags = this.playlist.tags
 
-        if (['morning', 'afternoon', 'night'].indexOf(tag) == -1) {
-          return "moods"
-        } else {
-          return "times"
-        }
+      if (this.playlist.taggable_id) {
+        method = 'patch'
+        url = 'http://localhost:3000/api/v1/taggables' + '/' + this.playlist.taggable_id;
+        data = {tags: tags};
+      } else {
+        method = 'post'
+        url = 'http://localhost:3000/api/v1/taggables';
+        data = {ext_id: ext_id, tags: tags};
+      }
+      axios({
+        method: method,
+        url: url,
+        data: data,
+        withCredentials: true
+      });
+      this.menu = false;
+    },
+    findTagHome: function(tag) {
+      // I need this to be super basic for now
+
+      if (['morning', 'afternoon', 'night'].indexOf(tag) == -1) {
+        return "moods"
+      } else {
+        return "times"
       }
     }
   }
+}
 </script>
 
 
 <style scoped>
-  .tag-name {
-    max-height: 52px;
-    border-bottom: solid 1px white;
-  }
-  .tag-name.v-input--is-readonly {
-    border-bottom: 0;
-  }
+.tag-name {
+  max-height: 52px;
+  border-bottom: solid 1px white;
+}
+.tag-name.v-input--is-readonly {
+  border-bottom: 0;
+}
 </style>
 
 <style>
-  .v-text-field>.v-input__control>.v-input__slot:before { border-style: none !important; }
-  .v-text-field>.v-input__control>.v-input__slot:after { border-style: none !important; }
-  .tag-name>.v-input__control {
-    max-height: 52px;
-  }
-  .tag-name.v-text-field {
-    padding-left: 12px;
-    margin-top: 0;
-  }
+.v-text-field>.v-input__control>.v-input__slot:before { border-style: none !important; }
+.v-text-field>.v-input__control>.v-input__slot:after { border-style: none !important; }
+.tag-name>.v-input__control {
+  max-height: 52px;
+}
+.tag-name.v-text-field {
+  padding-left: 12px;
+  margin-top: 0;
+}
 </style>

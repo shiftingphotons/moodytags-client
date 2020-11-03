@@ -4,14 +4,14 @@
       <v-row class="mb-4">
         <v-col cols="3">
           <div class="ml-6 float-left">
-            <img class="logo" src="../assets/logo.png" width="64" height="64"/>
+            <img class="logo" src="@/assets/logo.png" width="64" height="64"/>
             <h1 class="text-center">
-              <span class="brown-text">Moody</span><span class="pl-2 green-text">tags</span>
+              <span class="brown-text">moody</span><span class="pl-2 green-text">tags</span>
             </h1>
           </div>
         </v-col>
         <v-col cols="9">
-          <img class="app-screenshot" src="../assets/screen-mockup.png"/>
+          <img class="app-screenshot" src="@/assets/screen-mockup.png"/>
         </v-col>
       </v-row>
       <v-row>
@@ -74,11 +74,11 @@ export default {
 
 <style scoped>
 #app {
-    margin: 0 auto;
-    font-family: Roboto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #343534;
+  margin: 0 auto;
+  font-family: Roboto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #343534;
 }
 .logo {
   display: block;
