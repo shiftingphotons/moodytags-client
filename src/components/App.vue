@@ -19,6 +19,8 @@
           <v-col class="d-flex flex-row pa-0" cols="12">
             <v-slide-group
               show-arrows
+              next-icon="far fa-chevron-right"
+              prev-icon="far fa-chevron-left"
             >
               <v-card
                 class="mr-8 rounded-lg"
