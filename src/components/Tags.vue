@@ -2,11 +2,11 @@
   <div id="app">
     <v-app>
       <NavBar></NavBar>
-      <v-container>
+      <v-container class="mt-2">
         <div>
           <h1 class="headline text-center">Tag collections</h1>
           <p class="text-subtitle-1 text-center mb-8">
-            Create collections of tags for easier and quicker tagging
+            Create collections of tags for easier and quicker tagging.
           </p>
         </div>
         <div class="d-flex justify-space-between">
