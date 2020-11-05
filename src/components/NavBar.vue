@@ -1,8 +1,8 @@
 <template>
   <v-app-bar class="d-flex justify-center" color="#FBF9F4" max-height="50" height="54" flat>
-    <h2 @click="goHome" class="h-nav-item brown-text px-3">home</h2>
-    <h2 @click="goTags" class="h-nav-item brown-text px-3">tags</h2>
-    <h2 @click="goPlaylists" class="h-nav-item brown-text px-3">playlists</h2>
+    <h2 @click="goHome" class="h-nav-item brown-text px-3" :class="{ active: $root.currentRoute == '/app' }">home</h2>
+    <h2 @click="goTags" class="h-nav-item brown-text px-3" :class="{ active: $root.currentRoute == '/tags' }">tags</h2>
+    <h2 @click="goPlaylists" class="h-nav-item brown-text px-3" :class="{ active: $root.currentRoute == '/playlists' }">playlists</h2>
   </v-app-bar>
 </template>
 
@@ -48,11 +48,11 @@ export default {
 .h-nav-item {
   cursor: pointer;
 }
-.h-nav-item:hover {
-  color: #00bea6;
-}
 .brown-text {
   color: #997b6f;
+}
+.active, .h-nav-item:hover {
+  color: #00bea6;
 }
 
 </style>

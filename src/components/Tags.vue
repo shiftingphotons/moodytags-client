@@ -6,7 +6,7 @@
         <div>
           <h1 class="headline text-center">Tag collections</h1>
           <p class="text-subtitle-1 text-center mb-8">
-            Your things go here
+            Create collections of tags for easier and quicker tagging
           </p>
         </div>
         <div class="d-flex justify-space-between">
