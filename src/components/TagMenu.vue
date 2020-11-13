@@ -29,7 +29,8 @@
             chips
             multiple
             :search-input.sync="searchInput"
-            @change="searchInput = null"
+            @change="searchInput = null;"
+            :menu-props="{closeOnContentClick:true}"
           >
             <template v-slot:selection="data">
               <v-chip

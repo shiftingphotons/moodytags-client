@@ -2,9 +2,9 @@
   <div id="app">
     <v-app>
       <NavBar></NavBar>
-      <v-row v-if="!playlists.length" align="start" justify="center">
+      <v-row v-if="playlistsLoaded && !playlists.length" align="start" justify="center">
         <v-col>
-          <h2 class="text-center pb-8 empty-state-title">Getting the playlists! <br> Enjoy nature in the meantime.</h2>
+          <h2 class="text-center pb-8 empty-state-title">It's empty here. <br> Enjoy nature, create some Spotify playlists and try again.</h2>
           <v-img src="@/assets/undraw_nature_m5ll.svg" class="my-4 mx-auto empty-state-img"></v-img>
         </v-col>
       </v-row>
@@ -28,6 +28,7 @@
         <v-card
           class="d-flex justify-space-left flex-wrap"
           color="#FBF9F4"
+          v-if="playlistsLoaded"
           flat
           tile
         >
@@ -65,6 +66,23 @@
             </v-card>
           </v-col>
         </v-card>
+        <v-card
+          class="d-flex justify-space-left flex-wrap"
+          color="#FBF9F4"
+          v-if="!playlistsLoaded"
+          flat
+          tile
+        >
+          <v-col
+            v-for="n in 15"
+            :key="n"
+            cols="4"
+          >
+            <v-skeleton-loader
+              type="card"
+            ></v-skeleton-loader>
+          </v-col>
+        </v-card>
       </v-container>
       <Footer></Footer>
     </v-app>
@@ -86,6 +104,7 @@ export default {
       playlists: [],
       tags: [],
       page: 1,
+      playlistsLoaded: false,
       pageCount: 1,
     }
   },
@@ -108,6 +127,7 @@ export default {
       axios
         .get('http://localhost:3000/api/v1/playlists' + pageParam, {withCredentials: true})
           .then(response => (
+            this.playlistsLoaded = true,
             this.playlists = response.data.items,
             this.pageCount = Math.ceil(response.data.total / 50)
         ));

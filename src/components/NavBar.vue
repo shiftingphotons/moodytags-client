@@ -1,8 +1,17 @@
 <template>
-  <v-app-bar class="d-flex justify-center" color="#FBF9F4" max-height="50" height="54" flat>
-    <h2 @click="goHome" class="h-nav-item brown-text px-3">home</h2>
-    <h2 @click="goTags" class="h-nav-item brown-text px-3">tags</h2>
-    <h2 @click="goPlaylists" class="h-nav-item brown-text px-3">playlists</h2>
+  <v-app-bar class="d-flex justify-center pt-2" max-height="70" color="#FBF9F4" flat>
+    <h2 @click="goHome" class="d-flex flex-column h-nav-item brown-text px-6 text-center" :class="{ active: $root.currentRoute == '/app' }">
+      <v-icon style="color: inherit" medium>fal fa-home-lg</v-icon>
+      <span class="my-1" >home</span>
+    </h2>
+    <h2 @click="goTags" class="d-flex flex-column h-nav-item brown-text px-6" :class="{ active: $root.currentRoute == '/tags' }">
+      <v-icon style="color: inherit" medium>fal fa-hashtag</v-icon>
+      <span class="my-1" >tags</span>
+    </h2>
+    <h2 @click="goPlaylists" class="d-flex flex-column h-nav-item brown-text px-6" :class="{ active: $root.currentRoute == '/playlists' }">
+      <v-icon style="color: inherit" medium>fal fa-album-collection</v-icon>
+      <span class="my-1" >playlists</span>
+    </h2>
   </v-app-bar>
 </template>
 
@@ -46,13 +55,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .h-nav-item {
+  font-size: 0.9em;
   cursor: pointer;
-}
-.h-nav-item:hover {
-  color: #00bea6;
 }
 .brown-text {
   color: #997b6f;
+}
+.active, .green-text, .h-nav-item:hover {
+  color: #00bea6;
 }
 
 </style>

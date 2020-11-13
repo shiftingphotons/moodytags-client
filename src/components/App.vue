@@ -5,8 +5,8 @@
       <v-container>
         <v-row v-if="!sections || Object.keys(sections).length == 0" align="start" justify="center">
           <v-col>
-            <h2 class="text-center pb-8 empty-state-title" v-if="!sections">Fetching your tags...</h2>
-            <h2 class="text-center pb-8 empty-state-title" v-if="sections && Object.keys(sections).length == 0">It's a bit empty here :( <br> Try tagging some playlists.</h2>
+            <h2 class="text-center pb-8 empty-state-title mt-4" v-if="!sections">Fetching your tags...</h2>
+            <h2 class="text-center pb-8 empty-state-title mt-4" v-if="sections && Object.keys(sections).length == 0">It's a bit empty here :( <br> Try tagging some playlists.</h2>
             <v-img src="@/assets/undraw_compose_music_ovo2.svg" class="my-4 mx-auto empty-state-img"></v-img>
           </v-col>
         </v-row>
@@ -19,6 +19,8 @@
           <v-col class="d-flex flex-row pa-0" cols="12">
             <v-slide-group
               show-arrows
+              next-icon="far fa-chevron-right"
+              prev-icon="far fa-chevron-left"
             >
               <v-card
                 class="mr-8 rounded-lg"
