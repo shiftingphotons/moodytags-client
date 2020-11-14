@@ -62,7 +62,7 @@ const axios = require('axios');
 export default {
   data () {
     axios
-      .get('http://localhost:3000/api/v1/taggables', {withCredentials: true})
+      .get('/api/v1/taggables', {withCredentials: true})
         .then(response => (this.sort(response.data)))
     return {
       sections: this.sections

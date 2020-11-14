@@ -125,7 +125,7 @@ export default {
     getPlaylists: function(page) {
       var pageParam = page ? '?page=' + page : ''
       axios
-        .get('http://localhost:3000/api/v1/playlists' + pageParam, {withCredentials: true})
+        .get('/api/v1/playlists' + pageParam, {withCredentials: true})
           .then(response => (
             this.playlistsLoaded = true,
             this.playlists = response.data.items,
@@ -134,7 +134,7 @@ export default {
     },
     getTags: function() {
       axios
-        .get('http://localhost:3000/api/v1/tag_collections', {withCredentials: true})
+        .get('/api/v1/tag_collections', {withCredentials: true})
           .then(response => ( this.tags = response.data));
     },
   },

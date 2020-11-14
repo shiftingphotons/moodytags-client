@@ -106,11 +106,11 @@ export default {
 
       if (this.playlist.taggable_id) {
         method = 'patch'
-        url = 'http://localhost:3000/api/v1/taggables' + '/' + this.playlist.taggable_id;
+        url = '/api/v1/taggables' + '/' + this.playlist.taggable_id;
         data = {tags: tags};
       } else {
         method = 'post'
-        url = 'http://localhost:3000/api/v1/taggables';
+        url = '/api/v1/taggables';
         data = {ext_id: ext_id, tags: tags};
       }
       axios({

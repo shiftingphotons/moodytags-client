@@ -32,7 +32,7 @@
           <div class="pt-4">
             <div class="text-center">
               <v-btn
-                href="http://localhost:3000/auth/spotify"
+                href="/auth/spotify"
                 class="mt-2 mb-6 font-weight-bold"
                 x-large
                 color="success"
