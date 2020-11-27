@@ -99,7 +99,7 @@ export default {
       this.menu = false;
     },
     tagPlaylist: function(ext_id) {
-      var tags = this.playlist.tags.length ? this.playlist.tags : []
+      var tags = this.playlist.tags
       if (this.playlist.taggable_id) {
         this.$store.dispatch('updateTaggable', {id: this.playlist.taggable_id, tags: tags})
       } else {
