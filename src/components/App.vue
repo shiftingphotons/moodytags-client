@@ -57,35 +57,20 @@
 import NavBar from './NavBar.vue'
 import Footer from './Footer.vue'
 
-const axios = require('axios');
-
 export default {
   data () {
-    axios
-      .get('/api/v1/taggables', {withCredentials: true})
-        .then(response => (this.sort(response.data)))
-    return {
-      sections: this.sections
+    this.getTaggables()
+    return {}
+  },
+  computed: {
+    sections () {
+      return this.$store.getters.sortByTagCount
     }
   },
   methods: {
-    sort: function(sections, by='ByTagCount') {
-      return this["sort" + by].call(this, sections)
-    },
-    sortByTagCount(sections) {
-      var sortedSections = {}
-
-      var keys = Object.keys(sections)
-      keys = keys.sort(function(a, b) {
-        return sections[b].length - sections[a].length
-      });
-
-      for (var i = 0; i < keys.length; i++) {
-        sortedSections[keys[i]] = sections[keys[i]]
-      }
-
-      this.sections = sortedSections
-    },
+    getTaggables: function() {
+      this.$store.dispatch('getTaggables')
+    }
   },
   components: {
     NavBar,

@@ -57,16 +57,17 @@ import NavBar from './NavBar.vue'
 import Footer from './Footer.vue'
 import TagCard from './TagCard.vue'
 
-const axios = require('axios');
 
 export default {
   data () {
-    axios
-      .get('/api/v1/tag_collections', {withCredentials: true})
-        .then(response => (this.tags = response.data))
+    this.$store.dispatch('getTagCollections')
     return {
-      tags: this.tags,
       gridView: true
+    }
+  },
+  computed: {
+    tags () {
+      return this.$store.state.tagCollections
     }
   },
   methods: {
@@ -76,12 +77,11 @@ export default {
     addTag: function() {
       var tagName = window.prompt("Name of your new tag collection?")
       if (tagName && tagName.length > 0) {
-        this.tags.push({name: tagName, tags: [], order: this.tags.length})
+        this.$store.commit('addTagCollection', {name: tagName, tags: [], order: this.tags.length})
       }
     },
     save: function() {
-      axios
-        .put('/api/v1/tag_collections', {tags: this.tags}, {withCredentials: true})
+      this.$store.dispatch('saveTagCollections', this.tags)
     }
   },
   components: {
