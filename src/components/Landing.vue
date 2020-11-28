@@ -6,7 +6,7 @@
           <div class="ml-6 float-left">
             <img class="logo" src="@/assets/logo.png" width="64" height="64"/>
             <h1 class="text-center">
-              <span class="brown-text">moody</span><span class="pl-2 green-text">tags</span>
+              <span class="brown-text">moody</span><span class="pl-1 green-text">tags</span>
             </h1>
           </div>
         </v-col>
@@ -17,10 +17,10 @@
       <v-row>
         <v-col cols="5">
           <div class="ml-6">
-            <h1 class="green-text mb-6">A library of your great playlists, made better with tags.</h1>
+            <h1 class="green-text mb-6">A library of your great playlists made better with tags.</h1>
             <p class="font-weight-medium dark-blue-text">
-              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br><br>
-              The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+              Moodytags tries to solve the growing pains of finding the perfect playlist for the moment from your collection.<br><br>
+              Tag your music collection depending on how you like to sort your music and make them more easy to find when you are in a need for that morning or late night playlist you've forgotten about.
             </p>
           </div>
         </v-col>
@@ -51,7 +51,7 @@
       <v-row align="end" class="brown-background">
         <v-col class="py-0 pb-2 text-center">
           <span class="px-1 brown-text">Made for those with too much playlists to handle.</span><br><span class="px-2 brown-text">Say hi &#128073;</span>
-          <a href="https://dimitarralev.net" class="pr-4 font-weight-medium home-link" target="_blank" rel="noopener noreferrer">Dimitar Ralev</a>
+          <a href="https://shiftingphotons.dev" class="pr-4 font-weight-medium home-link" target="_blank" rel="noopener noreferrer">Dimitar Ralev</a>
         </v-col>
       </v-row>
     </v-app>
