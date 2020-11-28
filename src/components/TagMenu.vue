@@ -66,8 +66,6 @@
 </template>
 
 <script>
-const axios = require('axios');
-
 export default {
   name: "TagMenu",
   data: function() {
@@ -101,24 +99,12 @@ export default {
       this.menu = false;
     },
     tagPlaylist: function(ext_id) {
-      var url, method, data;
       var tags = this.playlist.tags
-
       if (this.playlist.taggable_id) {
-        method = 'patch'
-        url = 'http://localhost:3000/api/v1/taggables' + '/' + this.playlist.taggable_id;
-        data = {tags: tags};
+        this.$store.dispatch('updateTaggable', {id: this.playlist.taggable_id, tags: tags})
       } else {
-        method = 'post'
-        url = 'http://localhost:3000/api/v1/taggables';
-        data = {ext_id: ext_id, tags: tags};
+        this.$store.dispatch('createTaggable', {ext_id: ext_id, tags: tags})
       }
-      axios({
-        method: method,
-        url: url,
-        data: data,
-        withCredentials: true
-      });
       this.menu = false;
     }
   }

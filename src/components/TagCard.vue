@@ -87,7 +87,6 @@ export default {
         tags: [...this.tag.tags],
         name: this.tag.name
       }
-      console.log(this.prev)
     },
     addChip: function() {
       var tag = window.prompt('How should the tag be named?')

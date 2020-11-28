@@ -90,8 +90,6 @@
 </template>
 
 <script>
-const axios = require('axios');
-
 import TagMenu from './TagMenu.vue'
 import NavBar from './NavBar.vue'
 import Footer from './Footer.vue'
@@ -101,11 +99,7 @@ export default {
     this.getPlaylists()
     this.getTags()
     return {
-      playlists: [],
-      tags: [],
       page: 1,
-      playlistsLoaded: false,
-      pageCount: 1,
     }
   },
   computed: {
@@ -118,24 +112,31 @@ export default {
         });
       });
       return tagList
+    },
+    playlists () {
+      return this.$store.state.playlists
+    },
+    tags () {
+      return this.$store.state.tagCollections
+    },
+    pageCount () {
+      return Math.ceil(this.$store.state.totalPlaylistCount / 50)
+    },
+    playlistsLoaded () {
+      return this.$store.state.playlistsLoaded
     }
   },
   methods : {
-    changePage: function() {this.getPlaylists(this.page)},
+    changePage: function() {
+      this.getPlaylists(this.page)
+    },
     getPlaylists: function(page) {
       var pageParam = page ? '?page=' + page : ''
-      axios
-        .get('http://localhost:3000/api/v1/playlists' + pageParam, {withCredentials: true})
-          .then(response => (
-            this.playlistsLoaded = true,
-            this.playlists = response.data.items,
-            this.pageCount = Math.ceil(response.data.total / 50)
-        ));
+      this.$store.commit('setPlaylistsLoaded', false)
+      this.$store.dispatch('getPlaylists', pageParam)
     },
     getTags: function() {
-      axios
-        .get('http://localhost:3000/api/v1/tag_collections', {withCredentials: true})
-          .then(response => ( this.tags = response.data));
+      this.$store.dispatch('getTagCollections')
     },
   },
   components: {
