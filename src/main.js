@@ -11,7 +11,7 @@ import {version} from '../package.json';
 Vue.config.productionTip = false
 Vue.use(Vuex)
 
-const API_BASE = 'http://localhost:8000'
+const API_BASE = process.env.VUE_APP_API_BASE
 
 const routes = {
   '/': Landing,
