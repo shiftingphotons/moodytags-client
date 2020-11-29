@@ -11,7 +11,7 @@ import {version} from '../package.json';
 Vue.config.productionTip = false
 Vue.use(Vuex)
 
-const API_BASE = process.env.NODE_ENV == 'development' ? "localhost:8000" : ""
+const API_BASE = process.env.NODE_ENV == 'development' ? "http://localhost:8000" : ""
 
 const routes = {
   '/': Landing,
@@ -113,7 +113,8 @@ const app = new Vue({
 
   data: {
     currentRoute: window.location.pathname,
-    version: version
+    version: version,
+    API_BASE: API_BASE
   },
 
   computed: {

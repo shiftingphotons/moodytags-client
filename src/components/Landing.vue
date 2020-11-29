@@ -32,7 +32,7 @@
           <div class="pt-4">
             <div class="text-center">
               <v-btn
-                href="/auth/spotify"
+                :href="$root.API_BASE + '/auth/spotify'"
                 class="mt-2 mb-6 font-weight-bold"
                 x-large
                 color="success"
