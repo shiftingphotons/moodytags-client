@@ -4,9 +4,9 @@
 
 ---  
 
-👋  Single-page client application for [moodytags](https://github.com/shiftingphotons/moodytags/). Head up there for the details.
-
-
+<p align="center">
+👋  Single-page client application for <a href="https://github.com/shiftingphotons/moodytags/" target="_blank" rel="noopener noreferrer">moodytags</a>. Head up there for the details.
+</p>
 
 ## Project setup
 ```
