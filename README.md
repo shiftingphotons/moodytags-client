@@ -1,6 +1,12 @@
-<img src="gh_logo.png" height="100"/>
+<p align="center">
+  <a href="https://moodytags.shiftingphotons.dev"><img src="public/gh_logo.png" width="240"/></a>
+</p>
 
-# moody_tags_client
+---  
+
+👋  Single-page client application for [moodytags](https://github.com/shiftingphotons/moodytags/). Head up there for the details.
+
+
 
 ## Project setup
 ```
@@ -11,16 +17,3 @@ npm install
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
