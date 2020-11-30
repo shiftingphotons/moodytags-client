@@ -18,4 +18,8 @@ Make sure that the [API](https://github.com/shiftingphotons/moodytags) is runnin
 
 ```
 npm run serve
+
+App running at:
+  - Local:   http://localhost:8080/
+
 ```
