@@ -11,7 +11,7 @@ import {version} from '../package.json';
 Vue.config.productionTip = false
 Vue.use(Vuex)
 
-const API_BASE = process.env.VUE_APP_API_BASE
+const API_BASE_URL = process.env.NODE_ENV == 'development' ? "http://localhost:8000" : "https://moodytags.shiftingphotons.dev"
 
 const routes = {
   '/': Landing,
@@ -66,7 +66,7 @@ const store = new Vuex.Store({
   actions: {
     getTaggables (context) {
       axios
-        .get(API_BASE + '/api/v1/taggables', {withCredentials: true})
+        .get(API_BASE_URL + '/api/v1/taggables', {withCredentials: true})
           .then(response => (
             context.commit('setTaggables', response.data)
           ))
@@ -74,7 +74,7 @@ const store = new Vuex.Store({
     updateTaggable (context, payload) {
       axios({
         method: 'PATCH',
-        url: API_BASE + '/api/v1/taggables' + '/' + payload.id,
+        url: API_BASE_URL + '/api/v1/taggables' + '/' + payload.id,
         data: {tags: payload.tags},
         withCredentials: true
       });
@@ -82,24 +82,24 @@ const store = new Vuex.Store({
     createTaggable (context, payload) {
       axios({
         method: 'POST',
-        url: API_BASE + '/api/v1/taggables',
+        url: API_BASE_URL + '/api/v1/taggables',
         data: payload,
         withCredentials: true
       });
     },
     getTagCollections (context) {
       axios
-        .get(API_BASE + '/api/v1/tag_collections', {withCredentials: true})
+        .get(API_BASE_URL + '/api/v1/tag_collections', {withCredentials: true})
           .then(response => (
             context.commit('setTagCollections', response.data)
           ))
     },
     saveTagCollections (context, tags) {
-      axios.put(API_BASE + '/api/v1/tag_collections', {tags: tags}, {withCredentials: true})
+      axios.put(API_BASE_URL + '/api/v1/tag_collections', {tags: tags}, {withCredentials: true})
     },
     getPlaylists (context, pageParam) {
       axios
-        .get(API_BASE + '/api/v1/playlists' + pageParam, {withCredentials: true})
+        .get(API_BASE_URL + '/api/v1/playlists' + pageParam, {withCredentials: true})
           .then(response => (
             context.commit('setPlaylists', response.data)
         ));
@@ -113,7 +113,8 @@ const app = new Vue({
 
   data: {
     currentRoute: window.location.pathname,
-    version: version
+    version: version,
+    API_BASE_URL: API_BASE_URL
   },
 
   computed: {

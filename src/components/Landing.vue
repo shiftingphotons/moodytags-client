@@ -19,8 +19,8 @@
           <div class="ml-6">
             <h1 class="green-text mb-6">A library of your great playlists made better with tags.</h1>
             <p class="font-weight-medium dark-blue-text">
-              Moodytags tries to solve the growing pains of finding the perfect playlist for the moment from your collection.<br><br>
-              Tag your music collection depending on how you like to sort your music and make them more easy to find when you are in a need for that morning or late night playlist you've forgotten about.
+              Moodytags tries to solve the growing pains of finding the right playlist for the moment.<br><br>
+              Tag your music collection depending on how you like to sort your music and make them easier to find when you are in a need for that morning or late night playlist you've forgotten about.
             </p>
           </div>
         </v-col>
@@ -32,7 +32,7 @@
           <div class="pt-4">
             <div class="text-center">
               <v-btn
-                href="/auth/spotify"
+                :href="$root.API_BASE_URL + '/auth/spotify'"
                 class="mt-2 mb-6 font-weight-bold"
                 x-large
                 color="success"
