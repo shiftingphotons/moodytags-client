@@ -14,7 +14,7 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development
-Make sure that the [API](https://github.com/shiftingphotons/moodytags) is running..
+Make sure that the [API](https://github.com/shiftingphotons/moodytags) is running.
 
 ```
 npm run serve
