@@ -14,12 +14,11 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development
-Make sure that the [API](https://github.com/shiftingphotons/moodytags) is running and the [.env.development](https://github.com/shiftingphotons/moodytags-client/blob/main/.env.development) variables are pointing to its host.
+Make sure that the [API](https://github.com/shiftingphotons/moodytags) is running..
 
 ```
 npm run serve
 
 App running at:
   - Local:   http://localhost:8080/
-
 ```
